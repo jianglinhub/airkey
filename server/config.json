@@ -11,16 +11,12 @@
     "mongodb": {
       "cookieTime": 7200000,
       "sessionTime": 86400000,
-      "on": true,
+      "on": false,
       "host": "mongodb",
       "port": "27017",
       "schema": "dashboard",
       "user": "",
       "pass": ""
-    },
-    "dashboard": {
-      "host": "http://dashboard/",
-      "uri": ""
     },
     "statisticReport":{
       "host": "http://gateway/",
@@ -39,16 +35,12 @@
     "mongodb": {
       "cookieTime": 7200000,
       "sessionTime": 86400000,
-      "on": true,
+      "on": false,
       "host": "192.168.5.211",
       "port": "27017",
       "schema": "dashboard",
       "user": "",
       "pass": ""
-    },
-    "dashboard": {
-      "host": "http://127.0.0.1:3011/",
-      "uri": ""
     },
     "statisticReport":{
       "host": "http://10.10.12.134:8091/",
