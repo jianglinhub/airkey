@@ -1,0 +1,58 @@
+{
+  "production": {
+    "ip": "0.0.0.0",
+    "port": "80",
+    "cluster": false,
+    "brand": "df",
+    "appinfo": {
+      "appkey": "6839153606",
+      "secretkey": "bcd3edfbc30e64ec46cab5c5fcad6813"
+    },
+    "mongodb": {
+      "cookieTime": 7200000,
+      "sessionTime": 86400000,
+      "on": true,
+      "host": "mongodb",
+      "port": "27017",
+      "schema": "dashboard",
+      "user": "",
+      "pass": ""
+    },
+    "dashboard": {
+      "host": "http://dashboard/",
+      "uri": ""
+    },
+    "statisticReport":{
+      "host": "http://gateway/",
+      "uri": "statistic-report/"
+    }
+  },
+  "development": {
+    "ip": "127.0.0.1",
+    "port": "3007",
+    "cluster": false,
+    "brand": "df",
+    "appinfo": {
+      "appkey": "9909756346",
+      "secretkey": "9fd4b70a1892bec00906d5dedf5ebea6"
+    },
+    "mongodb": {
+      "cookieTime": 7200000,
+      "sessionTime": 86400000,
+      "on": true,
+      "host": "192.168.5.211",
+      "port": "27017",
+      "schema": "dashboard",
+      "user": "",
+      "pass": ""
+    },
+    "dashboard": {
+      "host": "http://127.0.0.1:3011/",
+      "uri": ""
+    },
+    "statisticReport":{
+      "host": "http://10.10.12.134:8091/",
+      "uri": "statistic-report/"
+    }
+  }
+}
