@@ -1,13 +1,9 @@
 <template>
     <view-box ref="viewBox" class="view-box">
-        <!--<x-header slot="header" class="header"-->
-        <!--:left-options="{'showBack':true,'backText':'微信'}">-->
-        <!--<div>智速同行</div>-->
-        <!--</x-header>-->
 
         <flexbox>
             <flexbox-item>
-                <div class="tips-info" v-text="isExpired?tipsLapse:tipsDetail"></div>
+                <div class="tips-info" v-text="isExpired?isWeixinBowser?tipsLapse:tipsBrowser:tipsDetail"></div>
             </flexbox-item>
         </flexbox>
 
@@ -99,14 +95,16 @@
     }
 </style>
 <script>
-    import { ViewBox, XHeader,Flexbox,FlexboxItem,Toast } from 'vux';
+    import { ViewBox,Flexbox,FlexboxItem,Toast } from 'vux';
     export default{
         data(){
             return{
                 tipsDetail:'您的好友刘婧琳送了您一把空中钥匙，为了车辆【川G 88818】车架号后6位 【889889】安全，在使用之前，请确保您在车辆旁边。',
                 tipsLapse:'您的好友刘婧琳送您的空中钥匙已失效，请联系车主。',
+                tipsBrowser:'为了您的安全考虑，建议您使用微信内置浏览器打开。',
                 isExpired:false,
                 isToastShow:false,
+                isWeixinBowser:true,
                 toastText:"其他远控指令正在执行"
             }
         },
@@ -115,7 +113,6 @@
         },
         components: {
             ViewBox,
-            XHeader,
             Flexbox,
             FlexboxItem,
             Toast
@@ -137,10 +134,24 @@
                 }else{
                     console.log("取消");
                 }
+            },
+            isWeiXin:function (){
+                let ua = window.navigator.userAgent.toLowerCase(),
+                    _this = this;
+                if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                    _this.isExpired = false;
+                }else{
+                    _this.isExpired = true;
+                    _this.isWeixinBowser = false;
+                }
             }
         },
         mounted(){
             this.mapInit();
+            this.isWeiXin();
+        },
+        created(){
+
         }
     }
 </script>
