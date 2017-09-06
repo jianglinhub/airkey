@@ -37,9 +37,7 @@
     "mongoose": "^4.9.6",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
-    "underscore": "^1.8.3",
-    "vux": "^2.5.9",
-    "vux-loader": "^1.1.5"
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -72,6 +70,8 @@
     "vue-strap": "github:wffranco/vue-strap",
     "vue-template-compiler": "2.3.2",
     "vuex": "^2.3.1",
+    "vux": "^2.5.10",
+    "vux-loader": "^1.1.5",
     "webpack": "^2.4.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-merge": "^4.1.0"
