@@ -6,10 +6,6 @@ import KeyControl from './modules/pages/KeyControl.vue';
 
 const routes = [
     {
-        path:"/KeyControl",
-        component: KeyControl
-    },
-    {
         path: '*',
         component: KeyControl
     }

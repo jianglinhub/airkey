@@ -48,51 +48,17 @@ app.use(staticCache(webRoot, {
     dynamic: true
 }));
 
-const sessionStore = config.session!="off"? new MongoStore({
-    db: config.mongodb.schema,
-    host: config.mongodb.host,
-    port: config.mongodb.port,
-    user: config.mongodb.user,
-    password: config.mongodb.pass,
-    ttl: config.mongodb.sessionTime
-}):null;
-
-app.use(session({
-    key: config.pkg.name + "-session",
-    store: sessionStore,
-    cookie: {
-        maxAge: config.mongodb.cookieTime
-    }
-}));
-
 app.use(async function(ctx, next){
-    if(nodeEnv === "development"){
-        ctx.path = ctx.path.replace(/^\/statisticReport/, '')
-    }
-    if( ctx.path.indexOf(".") !=-1 ){
+    if ('/' == ctx.path){
+        ctx.path= "/index.html";
         await send(ctx, ctx.path, { root: webRoot });
     }
-    if(!/^\/api/.test(ctx.path) && ctx.path.indexOf(".") ==-1){
-        ctx.path= "index.html";
-        ctx.session.token = ctx.query.token;
-        await send(ctx, ctx.path, { root: webRoot });
+    if(!ctx.body || ctx.status == 404) {
+        await next();
     }
-    if(!ctx.body || ctx.status == 404) await next();
 });
 
 app.use(bodyParser());
-
-if(nodeEnv != "development"){
-    app.use(jwt({
-        algorithm: 'RS256',
-        secret: jwtUtil.getPublicKey(),
-        getToken: ctx => {
-            return ctx.session.token || ctx.query.token;
-        }
-    }).unless({
-        path: []
-    }));
-}
 
 app.use(trouters());
 

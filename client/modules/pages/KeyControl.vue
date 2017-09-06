@@ -101,7 +101,7 @@
             return{
                 tipsDetail:'您的好友刘婧琳送了您一把空中钥匙，为了车辆【川G 88818】车架号后6位 【889889】安全，在使用之前，请确保您在车辆旁边。',
                 tipsLapse:'您的好友刘婧琳送您的空中钥匙已失效，请联系车主。',
-                tipsBrowser:'为了您的安全考虑，建议您使用微信内置浏览器打开。',
+                tipsBrowser:'为了您好友的车辆安全考虑，建议您使用微信内置浏览器打开。',
                 isExpired:false,
                 isToastShow:false,
                 isWeixinBowser:true,

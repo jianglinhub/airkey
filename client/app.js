@@ -16,8 +16,6 @@ import store from './modules/store/index';
 import routes from './route';
 
 const router = new VueRouter({
-    mode: 'history',
-    base: '/pages',
     routes: routes
 });
 
