@@ -119,10 +119,19 @@
         },
         methods: {
             mapInit:function (){
-                var map = new qq.maps.Map(document.getElementById("map"), {
+                var map = new qq.maps.Map(document.getElementById('map'),{
                     center: new qq.maps.LatLng(39.916527,116.397128),
-                    zoom:2,
+                    zoom: 2,
                     mapTypeControl:false
+                });
+                var anchor = new qq.maps.Point(6, 6),
+                    size = new qq.maps.Size(24, 24),
+                    origin = new qq.maps.Point(0, 0),
+                    icon = new qq.maps.MarkerImage('http://lbs.qq.com/javascript_v2/img/center.gif', size, origin, anchor);
+                var marker = new qq.maps.Marker({
+                    icon: icon,
+                    map: map,
+                    position:new qq.maps.LatLng(36.916527,116.397128)
                 });
             },
             btnClick:function (){
