@@ -207,8 +207,8 @@
                     if (!res.body.data.access_token) {
                         console.log('err: ', res.body.data)
                         localStorage.removeItem("access_token")
-                        // window.location.href = this.wechatConfig.redirect_uri
-                        window.location.href = 'http://127.0.0.1:3000/'
+                        window.location.href = this.wechatConfig.redirect_uri
+                        // window.location.href = 'http://127.0.0.1:3000/'
                         this.fetchCode()
                     } else {
                         console.log(res.body.data.access_token)
