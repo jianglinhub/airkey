@@ -17,10 +17,6 @@
       "schema": "dashboard",
       "user": "",
       "pass": ""
-    },
-    "statisticReport":{
-      "host": "http://gateway/",
-      "uri": "statistic-report/"
     }
   },
   "development": {
@@ -41,10 +37,6 @@
       "schema": "dashboard",
       "user": "",
       "pass": ""
-    },
-    "statisticReport":{
-      "host": "http://10.10.12.134:8091/",
-      "uri": "statistic-report/"
     }
   }
 }

@@ -8,9 +8,9 @@ import Resource from 'vue-resource';
 Vue.use(VueRouter);
 
 Vue.use(Resource);
-import 'font-awesome/css/font-awesome.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
+// import 'font-awesome/css/font-awesome.css';
+// import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/js/bootstrap.js';
 import keyControlApp from './modules/keyControlApp.vue';
 import store from './modules/store/index';
 import routes from './route';
