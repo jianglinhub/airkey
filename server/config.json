@@ -17,6 +17,10 @@
       "schema": "dashboard",
       "user": "",
       "pass": ""
+    },
+    "access_token": {
+      "host": "https://api.weixin.qq.com/",
+      "uri": "sns/oauth2/"
     }
   },
   "development": {
