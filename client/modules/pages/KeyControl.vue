@@ -109,13 +109,14 @@
                 toastText: "其他远控指令正在执行",
                 wechatConfig: {
                     oAuthCodeUri: "https://open.weixin.qq.com/connect/qrconnect",
-                    oAuthAccess_TokenUri: "https://api.weixin.qq.com/sns/oauth2/access_token",
-                    redirect_uri: "http://air-k.nx-code.com",
+                    redirect_uri: "http://air-k.nx-code.com/#/",
                     appid: "wxbd15f7403983633d",
                     response_type: "code",
                     scope: "snsapi_login",
                     state: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpX",
-                    secret: "73103274f8fb5330b59c66da0403982e"
+                    secret: "73103274f8fb5330b59c66da0403982e",
+                    grant_type: "authorization_code",
+                    id: "qrCode"
                 }
             }
         },
@@ -170,24 +171,51 @@
                 // window.localStorage.getItem("access_token": )
             },
 
+
             
             fetchCode() {
-                if (!this.code) {
+
+                if (this.$route.query.code && this.$route.query.state) {
+
+                    let state = this.$route.query.state
+                    
+                    if (state != this.wechatConfig.state) {
+                        alert("请求非法！")
+                    } else {
+                        let code = this.$route.query.code
+                        this.fetchAccess_Token(code)
+                    }
+
+                } else {
+                    
                     let url = this.wechatConfig.oAuthCodeUri + "?appid=" + this.wechatConfig.appid + "&redirect_uri=" + encodeURIComponent(this.wechatConfig.redirect_uri) + "&response_type=" + this.wechatConfig.response_type + "&scope=" + this.wechatConfig.scope + "&state=" + this.wechatConfig.state
 
                     window.location.href = url
-
-                } else {
-                    console.log(window.location.href)
                 }
+
             },
 
-            fetchAccess_Token() {
-                // http://air-k.nx-code.com/?code=001xEZN004kGBD10ngO00uvQN00xEZNR&state=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpX
+            fetchAccess_Token(code) {
+
+                let params = {
+                    appid: this.wechatConfig.appid,
+                    secret: this.wechatConfig.secret,
+                    code: code,
+                    grant_type: this.wechatConfig.grant_type
+                }
+                this.$http.get("api/fetchAccess_Token", {params: params}).then((res) => {
+                    if (!res.body.data.access_token) {
+                        console.log('err: ', res.body.data)
+                        localStorage.removeItem("access_token")
+                        // window.location.href = this.wechatConfig.redirect_uri
+                        window.location.href = 'http://127.0.0.1:3000/'
+                        this.fetchCode()
+                    } else {
+                        console.log(res.body.data.access_token)
+                        localStorage.setItem("access_token", res.body.data.access_token)
+                    }
+                })
             }
-
-
-
         },
 
         components: {
