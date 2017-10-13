@@ -12,7 +12,6 @@ stages:
  - build_app
  - build_image_master
  - build_image_stable
- - deploy
 
 build-app:
  stage: build_app
@@ -27,7 +26,7 @@ build-image-master:
  stage: build_image_master
  script:
    - docker build . --tag registry-vpc.cn-hangzhou.aliyuncs.com/meiauto/ice:$CI_PROJECT_NAME-$VERSION-SNAPSHOT
-   - docker push registry-vpc.cn-hangzhou.aliyuncs.com/meiauto/ice:$CI_PROJECT_NAME-$VERSION
+   - docker push registry-vpc.cn-hangzhou.aliyuncs.com/meiauto/ice:$CI_PROJECT_NAME-$VERSION-SNAPSHOT
  only:
    - master
 
@@ -39,12 +38,3 @@ build-image-stable:
  only:
    - /^.*-stable$/
 
-deploy_to_server:
- stage: deploy
- script:
-   - image=registry.cn-hangzhou.aliyuncs.com/meiauto/ice:$CI_PROJECT_NAME-$VERSION
-   - commands='if [ -n "$(docker ps -a | grep airkey)" ]; then docker rm -f airkey; fi && docker login --username=$(curl -s http://172.16.1.83:8002/docker/registry/username) --password=$(curl -s http://172.16.1.83:8002/docker/registry/password) registry.cn-hangzhou.aliyuncs.com && docker run --name airkey -p 3007:80 -d '$image
-   - echo $commands | ssh root@172.16.1.78
- when: manual
- only:
-   - /^.*-stable$/
