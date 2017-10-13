@@ -1,20 +1,7 @@
 <template>
-    <transition>
-        <router-view></router-view>
-    </transition>
+    <router-view></router-view>
 </template>
-<style >
 
-</style>
 <script>
-    export default{
-        data(){
-            return {
-
-            }
-        },
-        created(){
-
-        }
-    }
+  export default {}
 </script>

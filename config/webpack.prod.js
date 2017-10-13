@@ -9,9 +9,7 @@ const helpers = require('./helpers');
 
 const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
-const vuxLoader = require('vux-loader')
-
-const webpackConfig = webpackMerge(commonConfig, {
+module.exports = webpackMerge(commonConfig, {
     devtool: 'source-map',
 
     output: {
@@ -39,10 +37,3 @@ const webpackConfig = webpackMerge(commonConfig, {
         new ExtractTextPlugin('[name].[chunkhash].css')
     ]
 });
-
-module.exports = vuxLoader.merge(webpackConfig, {
-    options: {},
-    plugins: [{
-        name: 'vux-ui'
-    }]
-})

@@ -6,10 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const helpers = require('./helpers');
+const path = require('path')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
+
 
 module.exports = {
     entry: {
@@ -21,7 +23,8 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js',
             'components': resolve('client/modules/components'),
             'api': resolve('client/modules/api'),
-            'base': resolve('client/modules/base')
+            'base': resolve('client/modules/base'),
+            'common': resolve('client/modules/common')
         }
     },
     module: {
@@ -39,6 +42,17 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     use: 'css-loader?sourceMap',
                     fallback: 'style-loader'
+                })
+            },
+            {
+                test: /\.styl$/,
+                use: ExtractTextPlugin.extract({
+                    use: [{
+                        loader: "css-loader"
+                    }, {
+                        loader: "stylus-loader"
+                    }],
+                    fallback: "style-loader"
                 })
             },
             {
@@ -98,6 +112,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             chunksSortMode: 'dependency',
             template: './client/index.html',
+            favicon: path.resolve('favicon.ico')
         })
     ]
 };

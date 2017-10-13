@@ -3,19 +3,21 @@
  */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createLogger from 'vuex/dist/logger';
-import config from './modules/config';
-import window from './modules/window';
+import createLogger from 'vuex/dist/logger'
+import * as actions from './actions'
+import * as getters from './getters'
+import mutations from './mutations'
 
-Vue.use(Vuex);
+import state from './state'
+Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production';
+const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
-    modules: {
-        config,
-        window
-    },
+    actions,
+    getters,
+    state,
+    mutations,
     strict: debug,
     plugins: debug ? [createLogger()] : []
-});
+})

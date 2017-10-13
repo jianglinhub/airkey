@@ -4,10 +4,6 @@
     "port": "80",
     "cluster": false,
     "brand": "df",
-    "appinfo": {
-      "appkey": "6839153606",
-      "secretkey": "bcd3edfbc30e64ec46cab5c5fcad6813"
-    },
     "mongodb": {
       "cookieTime": 7200000,
       "sessionTime": 86400000,
@@ -18,13 +14,21 @@
       "user": "",
       "pass": ""
     },
-    "access_token": {
-      "host": "https://api.weixin.qq.com/",
-      "uri": "sns/oauth2/"
+    "air-keys": {
+      "host": "http://gateway/",
+      "uri": "air-keys/"
+    },
+    "vehicleLocation": {
+      "host": "http://gateway/",
+      "uri": "location/"
+    },
+    "remote-service":{
+      "host": "http://gateway/",
+      "uri": "remote-service/"
     }
   },
   "development": {
-    "ip": "127.0.0.1",
+    "ip": "192.168.5.137",
     "port": "3007",
     "cluster": false,
     "brand": "df",
@@ -42,9 +46,17 @@
       "user": "",
       "pass": ""
     },
-    "access_token": {
-      "host": "https://api.weixin.qq.com/",
-      "uri": "sns/oauth2/"
+    "air-keys": {
+      "host": "http://yx2.xauto.site:8091/",
+      "uri": "air-keys/"
+    },
+    "remote-service":{
+      "host": "http://yx2.xauto.site:8091/",
+      "uri": "remote-service/"
+    },
+    "vehicleLocation": {
+      "host": "http://yx5.xauto.site:8091/",
+      "uri": "location/"
     }
   }
 }

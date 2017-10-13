@@ -1,13 +1,7 @@
-/**
- * Created by yong.liu on 2017/5/1.
- */
-export const cartProducts = state => {
-    return state.cart.added.map(({ id, quantity }) => {
-        const product = state.products.all.find(p => p.id === id);
-        return {
-            title: product.title,
-            price: product.price,
-            quantity
-        }
-    })
-};
+export const plateNumber = state => state.plateNumber
+
+export const vin = state => state.vin
+
+export const password = state => state.password
+
+export const ownerName = state => state.ownerName

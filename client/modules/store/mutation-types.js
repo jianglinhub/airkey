@@ -1,13 +1,12 @@
 /**
  * Created by yong.liu on 2017/5/1.
  */
-export const SET_CONFIG = 'SET_CONFIG';
+export const SET_PLATE_NUMBER = 'SET_PLATE_NUMBER'
 
-export const SET_LOADING_SHOW = 'SET_LOADING_SHOW';
+export const SET_VIN = 'SET_VIN'
 
-export const SET_LOADING_HIDE = 'SET_LOADING_HIDE';
+export const SET_PASSWORD = 'SET_PASSWORD'
 
-export const SET_USER_INFO = 'SET_USER_INFO';
+export const SET_OWNER_NAME = 'SET_OWNER_NAME'
 
-export const ADD_TO_CART = 'ADD_TO_CART';
 

@@ -23,7 +23,8 @@ Request.prototype.transfer = function  (options){
         form: options.params,
         formData: options.formData,
         body: options.body,
-        json: true
+        json: true,
+        headers: options.headers
     };
     log.info(param);
     return request(param);

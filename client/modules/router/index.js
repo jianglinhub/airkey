@@ -3,25 +3,13 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const CheckOut = (resolve) => {
-  import('components/checkout/checkout').then((module) => {
-    resolve(module)
-  })
-}
+const CheckOut = () => import('components/checkout/checkout')
 
-const KeyControl = (resolve) => {
-  import('components/key-control/key-control').then((module) => {
-    resolve(module)
-  })
-}
+const KeyControl = () => import('components/key-control/key-control')
 
-const LoseEfficacy = (resolve) => {
-  import('components/lose-efficacy/lose-efficacy').then((module) => {
-    resolve(module)
-  })
-}
+const LoseEfficacy = () => import('components/lose-efficacy/lose-efficacy')
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -41,3 +29,5 @@ export default new Router({
     }
   ]
 })
+
+export default router
