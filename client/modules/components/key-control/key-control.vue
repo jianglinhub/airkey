@@ -23,8 +23,8 @@
   import ActionButton from 'base/action-button/action-button'
   import {mapGetters} from 'vuex'
   import axios from 'axios'
-  import {TMap} from 'common/js/QQMap.js'
-  import {NUtil} from 'common/js/Utils.js'
+  import {TMap} from 'common/js/QQMap'
+  import {NUtil} from 'common/js/utils'
   import jQuery from 'jquery'
 
   export default {
