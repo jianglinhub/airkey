@@ -135,9 +135,9 @@
       TextBlock
     },
     mounted() {
-      if (!this.isWeiXin()) {
-        this.$router.push('/lose-efficacy')
-      }
+      // if (!this.isWeiXin()) {
+      //   this.$router.push('/lose-efficacy')
+      // }
       // http://192.168.5.137:3000/#/?access_token=QLWKQ0DCX4RSEB8HTXDHVAD0Q1T4C92665
       this.analysis()
     }
