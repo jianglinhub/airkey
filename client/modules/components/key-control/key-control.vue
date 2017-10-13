@@ -8,7 +8,7 @@
         最近定位时间：{{uploadTime}}
       </NoticeInfo>
       <QQMap class="qq-map" :position="position" @mapChange="onMapChange"></QQMap>
-      <ActionButton class="action-button" @click="useKey">
+      <ActionButton class="action-button" @click="confirmAlert">
         空中钥匙
       </ActionButton>
       <div v-show="isShowMessage" class="message-info">{{messageInfo}}</div>
@@ -141,6 +141,12 @@
         setTimeout(() => {
           this.isShowMessage = false
         }, 2500)
+      },
+      confirmAlert() {
+        let r = confirm("空中钥匙执行成功后，2分钟内可以对车辆无钥匙启动，确认使用？")
+        if (r) {
+          this.useKey()
+        }
       }
     },
     components: {
