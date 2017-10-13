@@ -116,7 +116,7 @@
              newStr += _token.substr(i, 1)
            } 
           }
-          // this.vin = "YUN00001111111121"
+          // this.vin = "LK0C4SBHXHA014965" 8017
           this.vin = newStr
           // alert(this.vin)
           this.loginToKey(this.vin)
