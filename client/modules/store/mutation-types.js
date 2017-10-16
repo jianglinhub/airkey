@@ -9,4 +9,6 @@ export const SET_PASSWORD = 'SET_PASSWORD'
 
 export const SET_OWNER_NAME = 'SET_OWNER_NAME'
 
+export const SET_LEAVE_TIME = 'SET_LEAVE_TIME'
+
 

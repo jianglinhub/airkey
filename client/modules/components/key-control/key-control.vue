@@ -1,6 +1,6 @@
 <template>
   <transition name="slide">
-    <div class="key-control">
+    <div class="key-control" id="scrollable">
       <TextBlock class="text-block">
         您的好友<span class="color-red">【{{ownerName}}】</span>送了您一把空中钥匙，<span class="color-red" v-show="password">授权密码为【{{password}}】，</span>为了车辆<span class="color-red">【{{plateNumber}}】</span>，车架号后6位<span class="color-red">【{{vinLast6}}】</span>的安全，在使用之前，请确保您在车辆旁边。
       </TextBlock>
@@ -12,6 +12,7 @@
         空中钥匙
       </ActionButton>
       <div v-show="isShowMessage" class="message-info">{{messageInfo}}</div>
+      <Confirm v-show="isShowConfirm.isShow" @ok="confirmOK" @cancel="confirmCancel">{{isShowConfirm.content}}</Confirm>
     </div>
   </transition>
 </template>
@@ -26,6 +27,7 @@
   import {TMap} from 'common/js/QQMap'
   import {NUtil} from 'common/js/utils'
   import jQuery from 'jquery'
+  import {Confirm} from 'base/confirms'
 
   export default {
     data() {
@@ -34,7 +36,11 @@
         position: '',
         messageInfo: '',
         isShowMessage: false,
-        uploadTime: ''
+        uploadTime: '',
+        isShowConfirm: {
+          isShow: false,
+          content: ''
+        }
       }
     },
     computed: {
@@ -42,7 +48,8 @@
         'vin',
         'password',
         'plateNumber',
-        'ownerName'
+        'ownerName',
+        'leaveTime'
       ]),
       vinLast6() {
         return this.vin.substr(-6)
@@ -104,7 +111,8 @@
             let address = _location.detail.address
             this.position = address
           } else {
-              this.position = '定位失败'
+            this.uploadTime = NUtil.Format(Date.parse(new Date()), 'yyyy-MM-dd hh:mm:ss')
+            this.position = '定位失败'
           }
         }).catch((err) => {
           alert("服务器内部错误！")
@@ -143,17 +151,24 @@
         }, 2500)
       },
       confirmAlert() {
-        let r = confirm("空中钥匙执行成功后，2分钟内可以对车辆无钥匙启动，确认使用？")
-        if (r) {
-          this.useKey()
-        }
+        let c = "空中钥匙执行成功后，"+ (new Date(this.leaveTime)).getMinutes() +"分钟内可以对车辆无钥匙启动，确认使用？"
+        this.isShowConfirm.content = c
+        this.isShowConfirm.isShow = true
+      },
+      confirmOK() {
+        this.useKey()
+        this.isShowConfirm.isShow = false
+      },
+      confirmCancel() {
+        this.isShowConfirm.isShow = false
       }
     },
     components: {
       TextBlock,
       NoticeInfo,
       QQMap,
-      ActionButton
+      ActionButton,
+      Confirm
     },
     mounted() {
       if (this.vin !== '') {
@@ -164,16 +179,21 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  @import "~common/stylus/variable"
+  
   .key-control
     position: fixed
     top: 0
     left: 0
     bottom: 0
     padding: 16px 10px
+    background: $color-background $img-background no-repeat
+    background-size: cover
     &.slide-enter-active, &.slide-leave-active
-      transition: all 0.3s
+      transition: all 0.3s ease
     &.slide-enter, &.slide-leave-to
       transform: translate3d(100%, 0, 0)
+    &.slide-leave-to
     .text-block
       .color-red
         color: #cf213a

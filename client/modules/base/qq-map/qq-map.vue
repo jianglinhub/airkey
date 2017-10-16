@@ -44,29 +44,31 @@
 
       refreshPos() {
         let ele = document.getElementById('refresh')
-        this.addClass(ele, 'rotate')
+        // this.addClass(ele, 'rotate')
+        ele.style.backgroundImage = 'url('+ require('./loading.gif') +')'
         this.$emit('mapChange')
         setTimeout(() => {
-          this.removeClass(ele, 'rotate')
-        }, 2000)
+          // this.removeClass(ele, 'rotate')
+          ele.style.backgroundImage = 'url('+ require('./refresh.png') +')'
+        }, 1000)
       },
 
-      addClass(ele, cls) {
-        if (!this.hasClass(ele, cls)) {
-          ele.className += " " + cls
-        }
-      },
+      // addClass(ele, cls) {
+      //   if (!this.hasClass(ele, cls)) {
+      //     ele.className += " " + cls
+      //   }
+      // },
 
-      hasClass(ele, cls) {
-        return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'))
-      },
+      // hasClass(ele, cls) {
+      //   return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'))
+      // },
 
-      removeClass(ele, cls) {
-        if (this.hasClass(ele, cls)) {
-          let reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-          ele.className = ele.className.replace(reg, ' ')
-        }
-      }
+      // removeClass(ele, cls) {
+      //   if (this.hasClass(ele, cls)) {
+      //     let reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
+      //     ele.className = ele.className.replace(reg, ' ')
+      //   }
+      // }
 
     }
   }
@@ -99,14 +101,16 @@
           right: 10px
           width: 14px
           height: 14px
-          background: url(refresh.png) no-repeat
+          background-image: url(refresh.png)
+          background-repeat: no-repeat
           background-size: 14px 14px
   .smnoprint
     display: none
-  .rotate
-    animation: rotation 1s linear infinite
+  // .rotate
+  //   animation: rotation 0.2s linear infinite
+  //   background-image: url(loading.gif)
     
-  @keyframes rotation
-    from { transform: rotate(0deg) }
-    to { transform: rotate(360deg) }
+  // @keyframes rotation
+  //   from { transform: rotate(0deg) }
+  //   to { transform: rotate(360deg) }
 </style>

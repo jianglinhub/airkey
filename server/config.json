@@ -32,7 +32,7 @@
     }
   },
   "development": {
-    "ip": "192.168.5.137",
+    "ip": "192.168.5.136",
     "port": "3007",
     "cluster": false,
     "brand": "df",
@@ -59,7 +59,7 @@
       "uri": "remote-service/"
     },
     "vehicleLocation": {
-      "host": "http://yx5.xauto.site:8091/",
+      "host": "http://yx2.xauto.site:8091/",
       "uri": "location/"
     }
   }

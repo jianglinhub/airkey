@@ -21,11 +21,7 @@ router.beforeEach((to, from, next) => {
       next({path: '/checkout'})
     }
   } else {
-    if (to.path == '/checkout' || to.path == '/lose-efficacy') {
-      next({path: '/key-control'})
-    } else {
-      next()
-    }
+    next()
   }
 })
 

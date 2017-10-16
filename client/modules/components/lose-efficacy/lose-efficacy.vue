@@ -24,6 +24,7 @@
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
+  @import "~common/stylus/variable"
   
   .lose-efficacy
     position: fixed
@@ -31,8 +32,10 @@
     left: 0
     bottom: 0
     padding: 16px 10px
+    background: $color-background $img-background no-repeat
+    background-size: cover
     &.slide-enter-active, &.slide-leave-active
-      transition: all 0.3s
+      transition: all 0.3s ease
     &.slide-enter, &.slide-leave-to
       transform: translate3d(100%, 0, 0)
     .logo

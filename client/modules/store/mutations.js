@@ -12,6 +12,9 @@ const mutations = {
   },
   [types.SET_OWNER_NAME](state, ownerName) {
     state.ownerName = ownerName
+  },
+  [types.SET_LEAVE_TIME](state, leaveTime) {
+    state.leaveTime = leaveTime
   }
 }
 

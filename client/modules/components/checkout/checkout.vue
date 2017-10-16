@@ -12,30 +12,35 @@
           </div>
         </div>
       </div>
-      <div class="screen" v-show="doingValid">
-        <div class="checkout-info">正在校验...</div>
-      </div>
+      <Checkout v-if="doingValid">正在校验...</Checkout>
+      <Alert v-if="isAlertShow.isShow" @close="closeAlert">{{isAlertShow.content}}</Alert>
     </div>
   </transition>
 </template>
 
 <script>
   import TextBlock from 'base/text-block/text-block' 
-  import {mapMutations, mapGetters} from 'vuex' 
+  import {mapMutations, mapGetters} from 'vuex'
   import axios from 'axios'
+  import {Alert, Checkout} from 'base/confirms'
  
-  // YUN00001111111121 4414
+  // LK0C4SBHXHA014965 5708
 
   export default {
     data() {
       return {
         password: '',
         doingValid: false,
+        isAlertShow: {
+          isShow: false,
+          content: ''
+        }
       }
     },
     computed: {
       ...mapGetters([
-        'ownerName'
+        'ownerName',
+        'leaveTime'
       ])
     },
     watch: {
@@ -60,6 +65,7 @@
           } else {
             this.setPlateNumber(res.data.data.plateNumber)
             this.setOwnerName(res.data.data.ownerName)
+            this.setLeaveTime(res.data.data.endTime - Date.parse(new Date()))
             if (res.data.data.password) {
               this.setVIN(this.vin)
               this.setPassword(res.data.data.password)
@@ -69,7 +75,9 @@
           }
           this.doingValid = false
         }).catch((err) => {
-          alert("服务器内部错误！")
+          this.isAlertShow.content = "服务器内部错误！"
+          this.isAlertShow.isShow = true
+          this.doingValid = false
           console.log('err: ', err)
         })
       },
@@ -81,7 +89,8 @@
         }).then((res) => {
           if (res.data.status !== 1) {
             this.password = ''
-            alert('密码错误！')
+            this.isAlertShow.content = "密码错误！"
+            this.isAlertShow.isShow = true
             this.doingValid = false
           } else if (res.data.data.status !== 'VALID') {
             this.doingValid = false
@@ -90,11 +99,14 @@
             this.setPlateNumber(res.data.data.plateNumber)
             this.setVIN(this.vin)
             this.setOwnerName(res.data.data.ownerName)
+            this.setLeaveTime(res.data.data.endTime - Date.parse(new Date()))
             this.doingValid = false
             this.$router.push('/key-control')
           }
         }).catch((err) => {
-          alert("服务器内部错误！")
+          this.isAlertShow.content = "服务器内部错误！"
+          this.isAlertShow.isShow = true
+          this.doingValid = false
           console.log('err: ', err)
         })
       },
@@ -116,7 +128,7 @@
              newStr += _token.substr(i, 1)
            } 
           }
-          // this.vin = "LK0C4SBHXHA014965" 8017
+          // this.vin = "LK0C4SBHXHA014965"
           this.vin = newStr
           // alert(this.vin)
           this.loginToKey(this.vin)
@@ -124,15 +136,21 @@
           this.$router.push('/lose-efficacy')
         }
       },
+      closeAlert() {
+        this.isAlertShow.isShow = false
+      },
       ...mapMutations({
         setPlateNumber: 'SET_PLATE_NUMBER',
         setPassword: 'SET_PASSWORD',
         setVIN: 'SET_VIN',
-        setOwnerName :'SET_OWNER_NAME'
+        setOwnerName :'SET_OWNER_NAME',
+        setLeaveTime: 'SET_LEAVE_TIME'
       })
     },
     components: {
-      TextBlock
+      TextBlock,
+      Alert,
+      Checkout
     },
     mounted() {
       if (!this.isWeiXin()) {
@@ -155,10 +173,12 @@
       bottom: 0
       padding: 16px 10px
       z-index: 1
+      background: $color-background $img-background no-repeat
+      background-size: cover
       &.slide-enter-active, &.slide-leave-active
-        transition: all 0.3s
+        transition: all 0.3s ease
       &.slide-enter, &.slide-leave-to
-        transform: translate3d(-100%, 0, 0)
+        transform: translate3d(100%, 0, 0)
       .verify
         margin-top: 30px
         font-size: $font-size-medium-x
@@ -179,26 +199,26 @@
             outline: none
             border: none
             background: none
-    .screen
-      position: fixed
-      top: 0
-      left: 0
-      bottom: 0
-      right: 0
-      z-index: 2
-      background: rgba(0, 0, 0, 0.2)
-      .checkout-info
-        position: absolute
-        top: 50%
-        left: 50%
-        margin-left: -50px
-        margin-top: -50px
-        width: 100px
-        height: 100px
-        background: rgba(0, 0, 0, 0.5)
-        text-align: center
-        line-height: 100px
-        color: #fff
-        font-size: 16px
-        border-radius: 10px
+    // .screen
+    //   position: fixed
+    //   top: 0
+    //   left: 0
+    //   bottom: 0
+    //   right: 0
+    //   z-index: 2
+    //   background: rgba(0, 0, 0, 0.2)
+    //   .checkout-info
+    //     position: absolute
+    //     top: 50%
+    //     left: 50%
+    //     margin-left: -50px
+    //     margin-top: -50px
+    //     width: 100px
+    //     height: 100px
+    //     background: rgba(0, 0, 0, 0.5)
+    //     text-align: center
+    //     line-height: 100px
+    //     color: #fff
+    //     font-size: 16px
+    //     border-radius: 10px
 </style>
