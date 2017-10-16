@@ -1,7 +1,7 @@
 <template>
   <transition name="slide">
     <div class="lose-efficacy">
-      <TextBlock>您的好友刘倩琳送您的空中钥匙已失效，请联系车主。</TextBlock>
+      <TextBlock>您的好友{{ownerName}}送您的空中钥匙已失效，请联系车主。</TextBlock>
       <div class="logo"></div>
     </div>
   </transition>
@@ -14,7 +14,8 @@
   export default {
     computed: {
       ...mapGetters([
-        'vin'
+        'vin',
+        'ownerName'
       ])
     },
     components: {
