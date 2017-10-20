@@ -26,7 +26,7 @@ module.exports = webpackMerge(commonConfig, {
         stats: 'minimal',
         proxy: {
             "/api": {
-                target: "http://192.168.5.136:3007/",
+                target: "http://192.168.5.162:3007/",
             }
         }
     }

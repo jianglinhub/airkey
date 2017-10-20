@@ -59,7 +59,7 @@
         this.doingValid = true
         let params = {vin: this.vin}
         axios.post('/api/loginToKey', params).then((res) => {
-          if (res.data.status !== 1 || res.data.data.status !== 'VALID') {
+          if (res.data.status !== 1 || res.data.data.status !== 'USED') {
             this.doingValid = false
             this.$router.push('/lose-efficacy')
           } else {
@@ -92,7 +92,7 @@
             this.isAlertShow.content = "密码错误！"
             this.isAlertShow.isShow = true
             this.doingValid = false
-          } else if (res.data.data.status !== 'VALID') {
+          } else if (res.data.data.status !== 'USED') {
             this.doingValid = false
             this.$router.push('/lose-efficacy')
           } else {

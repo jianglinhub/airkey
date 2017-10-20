@@ -32,7 +32,7 @@
     }
   },
   "development": {
-    "ip": "192.168.5.136",
+    "ip": "192.168.5.162",
     "port": "3007",
     "cluster": false,
     "brand": "df",
@@ -44,7 +44,7 @@
       "cookieTime": 7200000,
       "sessionTime": 86400000,
       "on": false,
-      "host": "192.168.5.211",
+      "host": "192.168.5.162",
       "port": "27017",
       "schema": "dashboard",
       "user": "",
