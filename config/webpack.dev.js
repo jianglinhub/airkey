@@ -7,27 +7,27 @@ const commonConfig = require('./webpack.common.js');
 const helpers = require('./helpers');
 
 module.exports = webpackMerge(commonConfig, {
-    devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
 
-    output: {
-        path: helpers.root('webapp'),
-        publicPath: '',
-        filename: '[name].js',
-        chunkFilename: '[id].chunk.js'
-    },
+  output: {
+    path: helpers.root('webapp'),
+    publicPath: '',
+    filename: '[name].js',
+    chunkFilename: '[id].chunk.js'
+  },
 
-    plugins: [
-        new ExtractTextPlugin('[name].css')
-    ],
+  plugins: [
+    new ExtractTextPlugin('[name].css')
+  ],
 
-    devServer: {
-        host: "0.0.0.0",
-        historyApiFallback: true,
-        stats: 'minimal',
-        proxy: {
-            "/api": {
-                target: "http://192.168.5.162:3007/",
-            }
-        }
+  devServer: {
+    host: "0.0.0.0",
+    historyApiFallback: true,
+    stats: 'minimal',
+    proxy: {
+      "/api": {
+        target: "http://172.16.90.25:3007/",
+      }
     }
+  }
 });

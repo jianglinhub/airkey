@@ -13,22 +13,9 @@ Vue.use(VueLazyload, {
   loading: require('common/images/loading.gif')
 })
 
-router.beforeEach((to, from, next) => {
-  if (store.state.vin == '') {
-    if (to.path == '/checkout' || to.path == '/lose-efficacy') {
-      next()
-    } else {
-      next({path: '/checkout'})
-    }
-  } else {
-    next()
-  }
-})
-
-
 new Vue({
-    el: '#app',
-    store,
-    router,
-    render: h => h(App)
+  el: '#app',
+  store,
+  router,
+  render: h => h(App)
 })

@@ -6,9 +6,10 @@
 
 <script>
   export default {
+    props: ['params'],
     methods: {
       emitClick() {
-        this.$emit('click')
+        this.$emit('click', this.params)
       }
     }
   }
@@ -21,10 +22,10 @@
   .action-button
     text-align: center
     margin: 0 auto
-    width: 220px
+    width: calc((100% - 50px) / 2)
     height: 36px
     bg-image('button_blue_all')
-    background-size: 220px 36px
+    background-size: 100% 100%
     color: #dde8fb
     line-height: 36px
 </style>

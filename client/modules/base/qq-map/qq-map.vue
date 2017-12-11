@@ -41,35 +41,14 @@
         })
         geocoder.getLocation(this.position)
       },
-
       refreshPos() {
         let ele = document.getElementById('refresh')
-        // this.addClass(ele, 'rotate')
         ele.style.backgroundImage = 'url('+ require('./loading.gif') +')'
         this.$emit('mapChange')
         setTimeout(() => {
-          // this.removeClass(ele, 'rotate')
           ele.style.backgroundImage = 'url('+ require('./refresh.png') +')'
         }, 1000)
-      },
-
-      // addClass(ele, cls) {
-      //   if (!this.hasClass(ele, cls)) {
-      //     ele.className += " " + cls
-      //   }
-      // },
-
-      // hasClass(ele, cls) {
-      //   return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'))
-      // },
-
-      // removeClass(ele, cls) {
-      //   if (this.hasClass(ele, cls)) {
-      //     let reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
-      //     ele.className = ele.className.replace(reg, ' ')
-      //   }
-      // }
-
+      }
     }
   }
 </script>
@@ -80,7 +59,7 @@
   .qq-map
     .qqMap
       width: 100%
-      height: 224px
+      height: 35vh
       position: relative
       .pos-msg
         position: absolute
@@ -106,11 +85,4 @@
           background-size: 14px 14px
   .smnoprint
     display: none
-  // .rotate
-  //   animation: rotation 0.2s linear infinite
-  //   background-image: url(loading.gif)
-    
-  // @keyframes rotation
-  //   from { transform: rotate(0deg) }
-  //   to { transform: rotate(360deg) }
 </style>

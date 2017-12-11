@@ -1,9 +1,5 @@
 const state = {
-  plateNumber: '',
-  vin: '',
-  password: '',
-  ownerName: '',
-  leaveTime: 0
+    ownerName: ''
 }
 
 export default state

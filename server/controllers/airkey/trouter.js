@@ -7,58 +7,7 @@ const config = require(path.join(process.cwd(), "server/config"))
 const trouter = require(path.join(process.cwd(), "server/middleware/trouter"))
 const handler = require(path.join(process.cwd(), "server/service/airkey/handler"))
 
-trouter.post("/loginToKey", async function(ctx) {
-  let _this = ctx
-  let reqData = _this.request.body
-  let result = await handler.loginToKey(reqData)
-  let _body = {
-    status: 0,
-    data: {}
-  }
-  if(result.status === "SUCCEED") {
-    _body = {
-      status: 1,
-      data: result.data
-    }
-  }
-  _this.body = _body
-})
-
-trouter.post("/useKey", async function(ctx) {
-  let _this = ctx
-  let reqData = _this.request.body
-  let result = await handler.useKey(reqData)
-  let _body = {
-    status: 0,
-    data: {}
-  }
-  if(result.status === "SUCCEED") {
-    _body = {
-      status: 1,
-      data: result.data
-    }
-  }
-  _this.body = _body
-})
-
-trouter.post("/validPwd", async function(ctx) {
-  let _this = ctx
-  let reqData = _this.request.body
-  let result = await handler.validPwd(reqData)
-  let _body = {
-    status: 0,
-    data: {}
-  }
-  if(result.status === "SUCCEED") {
-    _body = {
-      status: 1,
-      data: result.data
-    }
-  }
-  _this.body = _body
-})
-
-trouter.post("/sendCommand", async function (ctx, next) {
+trouter.post("/sendCommand", async function(ctx, next) {
     let _this = ctx
     let reqData = _this.request.body
     let result = await handler.sendCommand(reqData)
@@ -66,7 +15,7 @@ trouter.post("/sendCommand", async function (ctx, next) {
         status: 0,
         data: {}
     };
-    if(result.status == "SUCCEED"){
+    if (result.status == "SUCCEED") {
         _body = {
             status: 1,
             data: result.data
@@ -75,7 +24,7 @@ trouter.post("/sendCommand", async function (ctx, next) {
     _this.body = _body;
 })
 
-trouter.post('/findLatestLocation',async function (ctx, next){
+trouter.post('/findLatestLocation', async function(ctx, next) {
     let _this = ctx;
     let reqData = _this.request.body;
     let result = await handler.findLatestLocation(reqData);
@@ -83,7 +32,59 @@ trouter.post('/findLatestLocation',async function (ctx, next){
         status: 0,
         result: result
     };
-    if(result.status == "SUCCEED") {
+    if (result.status == "SUCCEED") {
+        _body = {
+            status: 1,
+            result: result.data
+        };
+    }
+    _this.body = _body;
+});
+
+trouter.get('/queryKey', async function(ctx, next) {
+    let _this = ctx;
+    let reqData = _this.request.query;
+    let result = await handler.queryKey(reqData);
+    let _body = {
+        status: 0,
+        result: result
+    };
+    if (result.status == "SUCCEED") {
+        _body = {
+            status: 1,
+            result: result.data
+        };
+    }
+    _this.body = _body;
+});
+
+trouter.get('/checkPinOfDefault', async function(ctx, next) {
+    let _this = ctx;
+    let reqData = _this.request.query;
+    let result = await handler.checkPinOfDefault(reqData);
+    let _body = {
+        status: 0,
+        result: result
+    };
+    if (result.status == "SUCCEED") {
+        _body = {
+            status: 1,
+            result: "SUCCEED"
+        };
+    }
+    _this.body = _body;
+});
+
+trouter.get('/requestResult', async function(ctx, next) {
+    let _this = ctx;
+    let reqData = _this.request.query;
+    let result = await handler.requestResult(reqData);
+    console.log('result:', result)
+    let _body = {
+        status: 0,
+        result: result
+    };
+    if (result.status == "SUCCEED") {
         _body = {
             status: 1,
             result: result.data

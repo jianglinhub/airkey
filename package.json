@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --progress --host 192.168.5.162 --port 3000",
+    "start": "webpack-dev-server --inline --progress --host 172.16.90.25 --port 3000",
     "test": "karma start",
     "build": "webpack --config config/webpack.prod.js --progress --profile --bail",
     "packageVersion": "echo $npm_package_version"
@@ -16,7 +16,7 @@
   "publishConfig": {
     "registry": "http://nexus.nx-code.com/content/repositories/ne-portal-npm-release/"
   },
-  "author": "qin.ma",
+  "author": "jianglin",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.2",
@@ -40,12 +40,12 @@
     "mongoose": "^4.9.6",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
+    "rxjs": "^5.5.5",
     "scrollfix": "0.0.2",
     "underscore": "^1.8.3",
     "vue": "^2.3.2",
     "vue-lazyload": "^1.0.6",
-    "vue-router": "^2.7.0",
-    "vuex": "^2.3.1"
+    "vue-router": "^2.7.0"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

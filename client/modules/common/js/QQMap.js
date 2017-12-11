@@ -15,18 +15,19 @@ function QQMap(){
 QQMap.prototype.nGeocode = function(point){
     var geocoder = new qq.maps.Geocoder(),
         qqPoint = new qq.maps.LatLng(point.latitude , point.longitude),
-        deferred = Q.defer();
-    geocoder.getAddress(qqPoint);
+        deferred = Q.defer()
+    geocoder.getAddress(qqPoint)
+
     geocoder.setComplete(function(result) {
-        deferred.resolve(result);
-    });
+        deferred.resolve(result)
+    })
     //若服务请求失败，则运行以下函数
     geocoder.setError(function() {
-        deferred.reject();
-    });
+        deferred.reject()
+    })
 
-    return deferred.promise;
-};
+    return deferred.promise
+}
 
 QQMap.prototype.nLonLatFilter = function(lat,lon){
     let latlon = GPS.gcj_encrypt(lat,lon);

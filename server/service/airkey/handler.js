@@ -6,35 +6,35 @@ const path = require("path")
 const request = require(path.join(process.cwd(), "server/util/request"))
 const signUrl = require(path.join(process.cwd(), "server/util/signurl"))
 
-class AirKey{
-  constructor(){
+class AirKey {
+    constructor() {
 
-  }
+    }
 
-  loginToKey(params) {
-    let url = signUrl("air-keys", params, "loginToKey")
-    return request.transfer({ uri: url, method: "POST" })
-  }
+    sendCommand(params) {
+        var url = signUrl("remote-service", {}, "sendCommand");
+        return request.transfer({ uri: url, method: "POST", body: params, headers: { appId: 999 } });
+    }
 
-  useKey(params) {
-    let url = signUrl("air-keys", params, "useKey")
-    return request.transfer({ uri: url, method: "POST" })
-  }
+    findLatestLocation(params) {
+        var url = signUrl("vehicleLocation", params, "findLatest");
+        return request.transfer({ uri: url, method: "GET" });
+    }
 
-  validPwd(params) {
-    let url = signUrl("air-keys", params, "validPwd")
-    return request.transfer({ uri: url, method: "POST" })
-  }
+    queryKey(params) {
+        var url = signUrl("air-keys", params, "queryKey");
+        return request.transfer({ uri: url, method: "GET" });
+    }
 
-  sendCommand(params) {
-    var url = signUrl("remote-service",{},"sendCommand");
-    return request.transfer({uri: url, method: "POST", body:params, headers: {appId: 999}});
-  }
+    checkPinOfDefault(params) {
+        var url = signUrl("vehicle/tservice", params, "checkPinOfDefault");
+        return request.transfer({ uri: url, method: "GET" });
+    }
 
-  findLatestLocation(params) {
-    var url = signUrl("vehicleLocation", params, "findLatest");
-    return request.transfer({uri: url, method: "GET"});
-  }
+    requestResult(params) {
+        var url = signUrl("remote-service", params, "findSendCommandStatus");
+        return request.transfer({ uri: url, method: "GET" });
+    }
 }
 
 module.exports = exports = new AirKey

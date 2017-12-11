@@ -26,13 +26,17 @@
       "host": "http://gateway/",
       "uri": "location/"
     },
-    "remote-service":{
+    "remote-service": {
       "host": "http://gateway/",
       "uri": "remote-service/"
+    },
+    "vehicle": {
+      "host": "http://gateway/",
+      "uri": "vehicle/"
     }
   },
   "development": {
-    "ip": "192.168.5.162",
+    "ip": "172.16.90.25",
     "port": "3007",
     "cluster": false,
     "brand": "df",
@@ -54,13 +58,17 @@
       "host": "http://yx2.xauto.site:8091/",
       "uri": "air-keys/"
     },
-    "remote-service":{
-      "host": "http://yx2.xauto.site:8091/",
+    "remote-service": {
+      "host": "http://yx5.xauto.site:8091/",
       "uri": "remote-service/"
     },
     "vehicleLocation": {
       "host": "http://yx2.xauto.site:8091/",
       "uri": "location/"
+    },
+    "vehicle": {
+      "host": "http://yx2.xauto.site:8091/",
+      "uri": "vehicle/"
     }
   }
 }
