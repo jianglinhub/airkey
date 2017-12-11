@@ -238,7 +238,7 @@
         if (this.sendId) {
           let result = await this.requestResult()
           if (result.status === 'CMD_PROCESSING') {
-            (CMD_Message[result.status].replace('__COMMAND__', this.processingCode))
+            this.showLocalMessage(CMD_Message[result.status].replace('__COMMAND__', this.processingCode))
           } else {
             this.checkResult(params)
           }
