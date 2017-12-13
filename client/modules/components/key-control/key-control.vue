@@ -23,7 +23,6 @@
   import PinKeyBoard from 'base/pin-keyboard/pin-keyboard'
   import {mapGetters, mapMutations} from 'vuex'
   import axios from 'axios'
-  import {TMap} from 'common/js/QQMap'
   import {NUtil} from 'common/js/utils'
   import jQuery from 'jquery'
   import {Confirm, Message} from 'base/confirms'
@@ -159,16 +158,8 @@
             this.uploadTime = uploadTime
             let latitude = res.data.result.latitude
             let longitude = res.data.result.longitude
-
             let point = latitude + ',' + longitude
-            let location = await this.translateGPS(point)
-
-            let _point = {}
-            _point.latitude = location.locations[0].lat
-            _point.longitude = location.locations[0].lng
-
-            let _location = await TMap.nGeocode(_point)
-            let address = _location.detail.address
+            let address = (await this.geocoderLocation(point)).result.formatted_addresses.recommend
             this.position = address
           } else {
             this.uploadTime = NUtil.Format(Date.parse(new Date()), 'yyyy-MM-dd hh:mm:ss')
@@ -178,16 +169,12 @@
           alert("服务器内部错误！")
         })
       },
-      /**
-       * GPS => QQmap
-       */
-      translateGPS(locations) {
+      // 解析地址
+      geocoderLocation(location) {
         return new Promise( (resolve, reject)=> {
-          let url = 'https://apis.map.qq.com/ws/coord/v1/translate'
+          let key = 'TYABZ-C2NWR-UWEW2-WIJBQ-P4233-V6BMN'
+          let url = `http://apis.map.qq.com/ws/geocoder/v1/?location=${location}&key=${key}&poi_options=address_format=short&coord_type=1`
           let data = {
-            locations: locations,
-            type: 1,
-            key: 'TYABZ-C2NWR-UWEW2-WIJBQ-P4233-V6BMN',
             output: 'jsonp'
           }
           jQuery.ajax({
