@@ -192,12 +192,23 @@
       },
       analysis() {
         let access_token = this.$route.query.ak
+        let debug = this.$route.query.debug
+        if (debug) {
+          alert(access_token)
+          alert(debug)
+        }
         if (access_token !== undefined) {
           try {
             let key = CryptoJS.enc.Utf8.parse(WEB_SECRET_KEY)
             let iv = CryptoJS.enc.Utf8.parse(WEB_AES_IV)
             var decrypt = CryptoJS.AES.decrypt(access_token, key, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7})
+            if (debug) {
+              alert(decrypt)
+            }
             let data = decodeURIComponent(CryptoJS.enc.Utf8.stringify(decrypt).toString())
+            if (debug) {
+              alert(data)
+            }
             if (data.length > 5) {
               this.vin = data
               this.queryKey()
@@ -285,12 +296,11 @@
       PinKeyBoard
     },
     created() {
-      this.analysis()
-      // if (this.isWeiXin()) {
-      //   this.analysis()
-      // } else {
-      //   this.$router.push('/lose-efficacy')
-      // }
+      if (this.isWeiXin()) {
+        this.analysis()
+      } else {
+        this.$router.push('/lose-efficacy')
+      }
     }
   }
 </script>
