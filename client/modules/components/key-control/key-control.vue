@@ -285,11 +285,12 @@
       PinKeyBoard
     },
     created() {
-      if (this.isWeiXin()) {
-        this.analysis()
-      } else {
-        this.$router.push('/lose-efficacy')
-      }
+      // if (this.isWeiXin()) {
+      //   this.analysis()
+      // } else {
+      //   this.$router.push('/lose-efficacy')
+      // }
+      this.analysis()
     }
   }
 </script>
