@@ -191,7 +191,7 @@
         this.getPosition()
       },
       analysis() {
-        let access_token = this.$route.query.ak
+        let access_token = this.$route.query.ak.replace(/\s/g, '+')
         let debug = this.$route.query.debug
         if (debug) {
           alert(access_token)
