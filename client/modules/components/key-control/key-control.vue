@@ -79,6 +79,9 @@
       queryKey() {
         axios.get('api/queryKey?vin=' + this.vin).then( (res)=> {
           if (res.data.status === 1 && res.data.result) {
+            if (Number(this.code_id) !== Number(res.data.result.id)) {
+              this.$router.push('/lose-efficacy')  
+            }
             this.endTime = res.data.result.endTime
             let pastTime = this.hasPastTime(this.endTime)
             if (pastTime === true) {
@@ -210,7 +213,8 @@
               alert(data)
             }
             if (data.length > 5) {
-              this.vin = data
+              this.vin = data.split('&')[0].split('=')[1]
+              this.code_id = data.split('&')[1].split('=')[1]
               this.queryKey()
             } else {
               this.$router.push('/lose-efficacy')  
