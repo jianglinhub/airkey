@@ -3,7 +3,7 @@ module.exports = {
   CMD_FAILED: "__COMMAND__指令执行失败",
   CMD_CAN_FAILED: "__COMMAND__指令执行失败",
   CMD_REQUEST_FAILED: "__COMMAND__指令执行失败",
-  CMD_IGN_FAILED: "发动机异常，__COMMAND__指令执行失败",
+  CMD_IGN_FAILED: "请检查发动机状态，__COMMAND__指令执行失败",
   CMD_ANTI_THIEF_FAILED: "车身未处于防盗状态，__COMMAND__指令执行失败",
   CMD_BATTERY_FAILED: "电池电压过低，__COMMAND__指令执行失败",
   CMD_PEPS_FAILED: "__COMMAND__指令执行失败",
